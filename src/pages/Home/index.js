@@ -1,43 +1,41 @@
-import { Modal } from "../../components/Modal/Modal.js";
+import { HomePageCard } from "../../components/HomePageCard/HomePageCard.js";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 export function Home() {
-  const [modals, setModals] = useState([]);
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    async function fetchModal() {
+    async function fetchCard() {
       try {
         const response = await axios.get(
           "https://api.spaceflightnewsapi.net/v3/articles"
         );
 
-        setModals([...response.data]);
+        setCards([...response.data]);
       } catch (err) {
         console.log(err);
       }
     }
-    fetchModal();
+    fetchCard();
   }, []);
 
   return (
     <>
-      {modals
+      {cards
         .slice(0)
         .reverse()
-        .map((currentModal) => {
+        .map((currentCard) => {
           return (
             <>
-              <Link to={`/${currentModal.id}`}>
-                <Modal
-                  imageUrl={currentModal.imageUrl}
-                  title={currentModal.title}
-                  publishedAt={currentModal.publishedAt}
-                  summary={currentModal.summary}
-                  url={currentModal.url}
-                />
-              </Link>
+              <HomePageCard
+                imageUrl={currentCard.imageUrl}
+                title={currentCard.title}
+                publishedAt={currentCard.publishedAt}
+                summary={currentCard.summary}
+                url={currentCard.url}
+                id={currentCard.id}
+              />
             </>
           );
         })}
