@@ -12,7 +12,7 @@ function App() {
       <Searchbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/infos" element={<Infos />} />
+        <Route path="/:id" element={<Infos />} />
       </Routes>
     </div>
   );
