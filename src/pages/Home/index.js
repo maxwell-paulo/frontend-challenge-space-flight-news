@@ -38,6 +38,7 @@ export function Home() {
                 summary={currentCard.summary}
                 url={currentCard.url}
                 id={currentCard.id}
+                index={index}
               />
             </>
           );
