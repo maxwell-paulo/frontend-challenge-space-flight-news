@@ -5,11 +5,11 @@
 
 export function Searchbar() {
   return <h1>Searchbar</h1>;
-  // const [articles, setArticles] = useState([]);
+  // const [articlesList, setArticlesList] = useState();
   // const navigate = useNavigate();
 
   // function handleSelect(e) {
-  //   navigate(`/${e.id}`);
+  //   navigate(`/${e.value}`);
   // }
 
   // function styleFunction(provided, state) {
@@ -17,23 +17,23 @@ export function Searchbar() {
   // }
 
   // useEffect(() => {
-  //   async function fetchArticles() {
+  //   async function fetchArticle() {
   //     try {
   //       const response = await axios.get(
-  //         `https://api.spaceflightnewsapi.net/v3/articles`
+  //         "https://api.spaceflightnewsapi.net/v3/articles"
   //       );
-  //       setArticles(response.data);
+  //       setArticlesList(response.data);
   //     } catch (error) {
   //       console.log(error);
   //     }
   //   }
-  //   fetchArticles();
+  //   fetchArticle();
   // }, []);
 
-  // const options = articles.map((currentArticle) => {
+  // const options = articlesList.map((currentArticle) => {
   //   return {
   //     value: `${currentArticle.id}`,
-  //     label: `${currentArticle.title} `,
+  //     label: `${currentArticle.title}`,
   //   };
   // });
 

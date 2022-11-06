@@ -1,4 +1,7 @@
 import { HomePageCard } from "../../components/HomePageCard/HomePageCard.js";
+import { Searchbar } from "../../components/Searchbar/Searchbar.js";
+import { Sortbar } from "../../components/Sortbar/Sortbar.js";
+import { Navbar } from "../../components/Navbar/Navbar.js";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { format, parseISO } from "date-fns";
@@ -23,6 +26,10 @@ export function Home() {
 
   return (
     <>
+      <Searchbar />
+      <Sortbar />
+      <Navbar />
+
       {cards
         .slice(0)
         .reverse()
