@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { format, parseISO } from "date-fns";
+import { parseISO } from "date-fns";
+import moment from "moment";
 
 export function Infos() {
   const { id } = useParams();
   const [card, setCard] = useState([]);
-  const postDate = parseISO(card.publishedAt);
+  let postDate = parseISO(card.publishedAt);
 
   useEffect(() => {
     async function fetchCard() {
@@ -33,7 +34,7 @@ export function Infos() {
           </h1>
 
           <p className="font-Roboto text-[#1E2022]">
-            {format(postDate, "dd/MM/yyyy")}
+            {moment(postDate).format("DD/MM/YYYY")}
           </p>
 
           <p className="font-Roboto text-[#1E2022]">{card.summary}</p>
