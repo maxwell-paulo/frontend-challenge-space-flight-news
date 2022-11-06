@@ -1,7 +1,8 @@
 import { HomePageCard } from "../../components/HomePageCard/HomePageCard.js";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { format, parseISO } from "date-fns";
+import { parseISO } from "date-fns";
+import moment from "moment";
 
 export function Home() {
   const [cards, setCards] = useState([]);
@@ -26,15 +27,14 @@ export function Home() {
       {cards
         .slice(0)
         .reverse()
-        .map((currentCard) => {
+        .map((currentCard, index) => {
           const postDate = parseISO(currentCard.publishedAt);
-          console.log(parseISO(currentCard.publishedAt));
           return (
             <>
               <HomePageCard
                 imageUrl={currentCard.imageUrl}
                 title={currentCard.title}
-                publishedAt={format(postDate, "dd/MM/yyyy")}
+                publishedAt={moment(postDate).format("DD/MM/YYYY")}
                 summary={currentCard.summary}
                 url={currentCard.url}
                 id={currentCard.id}
