@@ -9,6 +9,13 @@ import moment from "moment";
 
 export function Home() {
   const [cards, setCards] = useState([]);
+  const [cardsPerPage, setCardsPerPage] = useState(3);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const pages = Math.ceil(cards.length / cardsPerPage);
+  const startIndex = currentPage * cardsPerPage;
+  const endIndex = startIndex + cardsPerPage;
+  const currentCards = cards.slice(0, endIndex);
 
   useEffect(() => {
     async function fetchCard() {
@@ -18,7 +25,6 @@ export function Home() {
         );
 
         setCards([...response.data]);
-        console.log(`cards ${cards}`);
       } catch (err) {
         console.log(err);
       }
@@ -29,28 +35,32 @@ export function Home() {
   return (
     <>
       <Searchbar />
-      <Sortbar />
+      <Sortbar card={cards} />
       <Navbar />
 
-      {cards
-        .slice(0)
-        .reverse()
-        .map((currentCard, index) => {
-          const postDate = parseISO(currentCard.publishedAt);
-          return (
-            <>
-              <HomePageCard
-                imageUrl={currentCard.imageUrl}
-                title={currentCard.title}
-                publishedAt={moment(postDate).format("DD/MM/YYYY")}
-                summary={currentCard.summary}
-                url={currentCard.url}
-                id={currentCard.id}
-                index={index}
-              />
-            </>
-          );
-        })}
+      {currentCards.map((currentCard, index) => {
+        const postDate = parseISO(currentCard.publishedAt);
+        return (
+          <>
+            <HomePageCard
+              imageUrl={currentCard.imageUrl}
+              title={currentCard.title}
+              publishedAt={moment(postDate).format("DD/MM/YYYY")}
+              summary={currentCard.summary}
+              url={currentCard.url}
+              id={currentCard.id}
+              index={index}
+            />
+          </>
+        );
+      })}
+
+      <button
+        value={currentPage + 1}
+        onClick={(e) => setCurrentPage(Number(e.target.value))}
+      >
+        BOTÃO
+      </button>
     </>
   );
 }

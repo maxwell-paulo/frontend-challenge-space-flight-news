@@ -23,7 +23,6 @@ export function Searchbar() {
         );
 
         setArticlesList(response.data);
-        console.log(`articlesList ${articlesList}`);
       } catch (err) {
         console.log(err);
       }
