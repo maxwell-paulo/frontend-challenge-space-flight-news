@@ -9,13 +9,30 @@ import moment from "moment";
 
 export function Home() {
   const [cards, setCards] = useState([]);
-  const [cardsPerPage, setCardsPerPage] = useState(3);
+  const [cardsPerPage, setCardsPerPage] = useState(4);
   const [currentPage, setCurrentPage] = useState(0);
 
   const pages = Math.ceil(cards.length / cardsPerPage);
   const startIndex = currentPage * cardsPerPage;
   const endIndex = startIndex + cardsPerPage;
   const currentCards = cards.slice(0, endIndex);
+  console.log(`currentPage: ${currentPage} pages: ${pages}`);
+
+  function renderButton() {
+    if (currentPage === pages) {
+      return "hidden";
+    } else {
+      return "flex m-auto bg-white border-solid border-2 border-violet-400  p-3 mb-5 text-violet-400 font-Roboto hover:-translate-y-0.2  transform transition hover:bg-violet-400 hover:text-white";
+    }
+  }
+
+  function renderDots() {
+    if (currentPage === pages) {
+      return "hidden";
+    } else {
+      return "flex m-auto w-3 h-3 bg-gray-300 mb-1 border-solid border-2 border-gray-400";
+    }
+  }
 
   useEffect(() => {
     async function fetchCard() {
@@ -54,12 +71,15 @@ export function Home() {
           </>
         );
       })}
-
+      <div className={renderDots()}></div>
+      <div className={renderDots()}></div>
+      <div className={renderDots()}></div>
       <button
         value={currentPage + 1}
+        className={renderButton()}
         onClick={(e) => setCurrentPage(Number(e.target.value))}
       >
-        BOTÃO
+        Carregar Mais{" "}
       </button>
     </>
   );
