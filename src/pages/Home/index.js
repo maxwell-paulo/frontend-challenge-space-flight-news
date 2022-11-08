@@ -24,9 +24,6 @@ export function Home() {
     return a[colunmOrder] > b[colunmOrder] ? order : order;
   });
 
-  console.log(sort);
-  console.log(sort.Sort);
-
   function renderButton() {
     if (currentPage === pages) {
       return "hidden";
@@ -48,9 +45,7 @@ export function Home() {
     if (e.target.value !== sort.Sort) {
       setOrder(-order);
       setColunmOrder(e);
-      console.log("Caiu no if");
     }
-    console.log(`1 ${e.target.value}`);
   }
 
   useEffect(() => {
