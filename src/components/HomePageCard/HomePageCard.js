@@ -11,7 +11,7 @@ export function HomePageCard(props) {
           <div className="flex justify-between items-center">
             <p className="font-Roboto text-[#1E2022]">{publishedAt}</p>
             <a href={url} target="_blank" rel="noreferrer">
-              <button className="font-Roboto text-[#1E2022] border-[#1E2022] border-2 px-5 bg-gray-300 hover:-translate-y-0.5  transform transition hover:underline">
+              <button className="font-Roboto text-[#1E2022] border-[#1E2022] border px-5 bg-gray-300 hover:-translate-y-0.5  transform transition hover:underline">
                 newsSite
               </button>
             </a>
@@ -35,7 +35,7 @@ export function HomePageCard(props) {
           <div className="flex justify-between items-center">
             <p className="font-Roboto text-[#1E2022]">{publishedAt}</p>
             <a href={url} target="_blank" rel="noreferrer">
-              <button className="font-Roboto text-[#1E2022] border-[#1E2022] border-2 px-5 bg-gray-300 hover:-translate-y-0.5  transform transition hover:underline">
+              <button className="font-Roboto text-[#1E2022] border-[#1E2022] border px-5 bg-gray-300 hover:-translate-y-0.5  transform transition hover:underline">
                 newsSite
               </button>
             </a>
