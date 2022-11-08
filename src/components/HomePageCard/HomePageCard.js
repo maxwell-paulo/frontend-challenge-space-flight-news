@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export function HomePageCard(props) {
   const { imageUrl, title, publishedAt, summary, url, id, index } = props;
-  if (index % 2 === 1) {
+  if (index % 2 === 0) {
     return (
       <div className="flex m-auto mb-20 justify-between items-center w-4/6   gap-x-20">
         <img src={imageUrl} alt="Article" className="max-w-md w-60" />
@@ -17,12 +17,10 @@ export function HomePageCard(props) {
             </a>
           </div>
           <p className="font-Roboto text-[#1E2022]">{summary}</p>
-          <Link to={`/${id}`}>
-            <a href={id} target="_blank" rel="noreferrer">
-              <button className="font-Roboto text-white bg-gray-600 py-3 px-4 rounded-md  hover:-translate-y-0.5  transform transition hover:bg-[#D07017]">
-                Ver Mais
-              </button>
-            </a>
+          <Link to={`/${id}`} className="w-24">
+            <button className="w-24 font-Roboto text-white bg-gray-600 py-3 px-4 rounded-md  hover:-translate-y-0.5  transform transition hover:bg-[#D07017]">
+              Ver Mais
+            </button>
           </Link>
         </div>
       </div>
@@ -41,12 +39,10 @@ export function HomePageCard(props) {
             </a>
           </div>
           <p className="font-Roboto text-[#1E2022]">{summary}</p>
-          <Link to={`/${id}`}>
-            <a href={id} target="_blank" rel="noreferrer">
-              <button className="font-Roboto text-white bg-gray-600 py-3 px-4 rounded-md  hover:-translate-y-0.5  transform transition hover:bg-[#D07017]">
-                Ver Mais
-              </button>
-            </a>
+          <Link to={`/${id}`} className="w-24">
+            <button className="w-24 font-Roboto text-white bg-gray-600 py-3 px-4 rounded-md  hover:-translate-y-0.5  transform transition hover:bg-[#D07017]">
+              Ver Mais
+            </button>
           </Link>
         </div>
         <img src={imageUrl} alt="Article" className="max-w-md w-60" />

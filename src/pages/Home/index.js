@@ -9,7 +9,7 @@ export function Home() {
   let [cards, setCards] = useState([]);
   const [order, setOrder] = useState(1);
   const [colunmOrder, setColunmOrder] = useState(cards);
-  const [cardsPerPage, setCardsPerPage] = useState(4);
+  const [cardsPerPage, setCardsPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
   const [sort, setSort] = useState({
     Sort: "Mais novas",
