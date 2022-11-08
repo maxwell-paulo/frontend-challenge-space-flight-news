@@ -4,19 +4,29 @@ import { Sortbar } from "../../components/Sortbar/Sortbar.js";
 import { Navbar } from "../../components/Navbar/Navbar.js";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { parseISO } from "date-fns";
 import moment from "moment";
 
 export function Home() {
-  const [cards, setCards] = useState([]);
+  let [cards, setCards] = useState([]);
+  const [order, setOrder] = useState(1);
+  const [colunmOrder, setColunmOrder] = useState(cards);
   const [cardsPerPage, setCardsPerPage] = useState(4);
   const [currentPage, setCurrentPage] = useState(0);
+  const [sort, setSort] = useState({
+    Sort: "Mais novas",
+  });
 
   const pages = Math.ceil(cards.length / cardsPerPage);
   const startIndex = currentPage * cardsPerPage;
   const endIndex = startIndex + cardsPerPage;
   const currentCards = cards.slice(0, endIndex);
-  console.log(`currentPage: ${currentPage} pages: ${pages}`);
+
+  cards = cards.sort((a, b) => {
+    return a[colunmOrder] > b[colunmOrder] ? order : order;
+  });
+
+  console.log(sort);
+  console.log(sort.Sort);
 
   function renderButton() {
     if (currentPage === pages) {
@@ -32,6 +42,16 @@ export function Home() {
     } else {
       return "flex m-auto w-3 h-3 bg-gray-300 mb-1 border-solid border-2 border-gray-400";
     }
+  }
+
+  function handleOrder(e) {
+    setSort({ ...sort, [e.target.name]: e.target.value });
+    if (e.target.value !== sort.Sort) {
+      setOrder(-order);
+      setColunmOrder(e);
+      console.log("Caiu no if");
+    }
+    console.log(`1 ${e.target.value}`);
   }
 
   useEffect(() => {
@@ -52,11 +72,23 @@ export function Home() {
   return (
     <>
       <Searchbar />
-      <Sortbar card={cards} />
+      <select
+        className="w-60 font-Roboto"
+        onChange={handleOrder}
+        name="Sort"
+        placeholder="Sort"
+      >
+        <option hidden value="Mais novas">
+          Sort
+        </option>
+        <option disabled>Sort</option>
+        <option value="Mais antigas">Mais antigas</option>
+        <option value="Mais novas">Mais novas</option>
+      </select>
       <Navbar />
 
       {currentCards.map((currentCard, index) => {
-        const postDate = parseISO(currentCard.publishedAt);
+        const postDate = new Date(currentCard.publishedAt);
         return (
           <>
             <HomePageCard

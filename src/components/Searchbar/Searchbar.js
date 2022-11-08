@@ -11,10 +11,6 @@ export function Searchbar() {
     navigate(`/${e.value}`);
   }
 
-  function styleFunction(provided, state) {
-    return { ...provided, color: state.isFocused ? "blue" : "red" };
-  }
-
   useEffect(() => {
     async function fetchArticle() {
       try {
@@ -40,9 +36,9 @@ export function Searchbar() {
   return (
     <div>
       <Select
+        className="w-60 font-Roboto"
         options={options}
         onChange={handleSelect}
-        styles={styleFunction}
         placeholder="Search"
       />
     </div>

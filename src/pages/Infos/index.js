@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { parseISO } from "date-fns";
 import moment from "moment";
 
 export function Infos() {
   const { id } = useParams();
   const [card, setCard] = useState([]);
-  let postDate = parseISO(card.publishedAt);
+  let postDate = new Date(card.publishedAt);
 
   useEffect(() => {
     async function fetchCard() {
